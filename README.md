@@ -6,6 +6,7 @@ Steps to save auto assemble script to table using Cheat Engine
 4. In the auto assemble window, click File -> Assign to current cheat table. 
 5. In the main CE window, save the table. 
 
-Table list :
+Table list and notes:
 1. Kholat-Win64-Shipping.CT - Kholat (2015) Infinite stamina table, credits goes to original auto assemble script here 
-https://guidedhacking.com/resources/kholat-cheat-table.200/
+https://guidedhacking.com/resources/kholat-cheat-table.200/. The actual table was behind a paywall, so used the script and saved it to a table.
+Works on the latest Steam version of the game. 
