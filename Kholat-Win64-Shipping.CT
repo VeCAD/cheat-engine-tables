@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Inf stamina"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(stamina,Kholat-Win64-Shipping.exe,F3 0F 5C CE 0F 2F C8 F3 0F 11 8B) // should be unique
+alloc(newmem,$1000,"Kholat-Win64-Shipping.exe"+108ACA)
+
+label(code)
+label(return)
+label(stam)
+registersymbol(stam)
+
+newmem:
+
+code:
+mov [stam],rbx
+  //subss xmm1,xmm6
+  comiss xmm1,xmm0
+  jmp return
+
+stam:
+dq 0
+
+stamina:
+  jmp newmem
+  nop
+  nop
+return:
+registersymbol(stamina)
+
+[DISABLE]
+
+stamina:
+  db F3 0F 5C CE 0F 2F C8
+
+unregistersymbol(stamina)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Kholat-Win64-Shipping.exe"+108ACA
+
+"Kholat-Win64-Shipping.exe"+108A98: 48 85 C9                       -  test rcx,rcx
+"Kholat-Win64-Shipping.exe"+108A9B: 0F 84 E7 00 00 00              -  je Kholat-Win64-Shipping.exe+108B88
+"Kholat-Win64-Shipping.exe"+108AA1: E8 AA 3D 00 00                 -  call Kholat-Win64-Shipping.exe+10C850
+"Kholat-Win64-Shipping.exe"+108AA6: 84 C0                          -  test al,al
+"Kholat-Win64-Shipping.exe"+108AA8: 0F 85 DA 00 00 00              -  jne Kholat-Win64-Shipping.exe+108B88
+"Kholat-Win64-Shipping.exe"+108AAE: F6 83 BC 05 00 00 02           -  test byte ptr [rbx+000005BC],02
+"Kholat-Win64-Shipping.exe"+108AB5: 74 57                          -  je Kholat-Win64-Shipping.exe+108B0E
+"Kholat-Win64-Shipping.exe"+108AB7: F3 0F 10 8B C8 05 00 00        -  movss xmm1,[rbx+000005C8]
+"Kholat-Win64-Shipping.exe"+108ABF: F3 0F 59 B3 8C 05 00 00        -  mulss xmm6,[rbx+0000058C]
+"Kholat-Win64-Shipping.exe"+108AC7: 0F 57 C0                       -  xorps xmm0,xmm0
+// ---------- INJECTING HERE ----------
+"Kholat-Win64-Shipping.exe"+108ACA: F3 0F 5C CE                    -  subss xmm1,xmm6
+"Kholat-Win64-Shipping.exe"+108ACE: 0F 2F C8                       -  comiss xmm1,xmm0
+// ---------- DONE INJECTING  ----------
+"Kholat-Win64-Shipping.exe"+108AD1: F3 0F 11 8B C8 05 00 00        -  movss [rbx+000005C8],xmm1
+"Kholat-Win64-Shipping.exe"+108AD9: 0F 87 BC 00 00 00              -  ja Kholat-Win64-Shipping.exe+108B9B
+"Kholat-Win64-Shipping.exe"+108ADF: 33 D2                          -  xor edx,edx
+"Kholat-Win64-Shipping.exe"+108AE1: 48 8B CB                       -  mov rcx,rbx
+"Kholat-Win64-Shipping.exe"+108AE4: C7 83 C8 05 00 00 00 00 00 00  -  mov [rbx+000005C8],00000000
+"Kholat-Win64-Shipping.exe"+108AEE: C6 83 C4 05 00 00 01           -  mov byte ptr [rbx+000005C4],01
+"Kholat-Win64-Shipping.exe"+108AF5: E8 86 E6 FF FF                 -  call Kholat-Win64-Shipping.exe+107180
+"Kholat-Win64-Shipping.exe"+108AFA: B2 01                          -  mov dl,01
+"Kholat-Win64-Shipping.exe"+108AFC: 48 8B CB                       -  mov rcx,rbx
+"Kholat-Win64-Shipping.exe"+108AFF: 0F 28 74 24 20                 -  movaps xmm6,[rsp+20]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
