@@ -11,3 +11,4 @@ Table list and game notes:
 https://guidedhacking.com/resources/kholat-cheat-table.200/. The actual table was behind a paywall, but the script was openly available, used the steps above to save it to table format. 
 Works on the latest Steam version of the game. 
 2. RobinHood.CT - Robin Hood Legend Of Sherwood (2002, GOG v1.1) Money hack to avoid using the ingame cheat code. Tested on GOG versoin, use with caution, the game can hit 'brick' state even without hacks. Refer more here: https://www.gog.com/forum/robin_hood_legend_of_sherwood#1645970124
+3. C&CRenegade.CT - Command & Conquer Renegade (2002, Origin v1.037) Inf HP and Ammo. Scripts obtained scouring the Cheat Engine forums. 

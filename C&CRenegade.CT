@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"HP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+
+
+aobscanmodule(qweqeqe,Game.exe,D9 5E 48 39 BB 8C 09 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+push edi
+mov edi,[Game.exe+2AF092]
+mov edi,[Game.exe+8280]
+mov [ecx-04],(float)100
+xor [ecx-04],edi
+pop edi
+code:
+  fstp dword ptr [esi+48]
+  cmp [ebx+0000098C],edi
+  jmp return
+
+qweqeqe:
+  jmp newmem
+  nop
+  nop
+  nop
+  nop
+return:
+registersymbol(qweqeqe)
+
+[DISABLE]
+qweqeqe:
+  db D9 5E 48 39 BB 8C 09 00 00
+
+unregistersymbol(qweqeqe)
+dealloc(newmem)
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Ammo"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(ammo,Game.exe,D8 1D 74 C6 85 00) // should be unique
+alloc(newmem,$100)
+
+label(code)
+label(return)
+
+newmem:
+push edi
+mov edi,[Game.exe+2AF092]
+mov edi,[Game.exe+8280]
+mov [ecx-04],(float)100
+xor [ecx-04],edi
+pop edi
+
+code:
+  fcomp dword ptr [Game.exe+45C674]
+  jmp return
+
+ammo:
+  jmp newmem
+  nop
+return:
+registersymbol(ammo)
+
+[DISABLE]
+
+ammo:
+  db D8 1D 74 C6 85 00
+
+unregistersymbol(ammo)
+dealloc(newmem)
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
